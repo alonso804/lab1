@@ -31,14 +31,14 @@ namespace utec {
 				 *this->points[idxPoint] = new_point;
 				 *idxPoint++;
 				 */
-				this->points.push_back(new_point);
+				this->points.push_back(new_point); // O(1)
 			}
 
 			Point nearest_neighbor(const Point& reference) override { 
 				Point result = this->points[0];
 				double distance = result.distance(reference);
 
-				for (const auto& point : this->points) {
+				for (const auto& point : this->points) { // O(n * D) => n = cantidad de puntos, D = dimensiones
 					double newDistance = point.distance(reference);
 
 					if (newDistance < distance) {
