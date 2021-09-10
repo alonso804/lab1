@@ -1,24 +1,67 @@
 #pragma once
 
 #include "SpatialBase.h"
+#include <utility>
+#include <vector>
+#include <iostream>
+#include <unordered_map>
+
+using namespace std;
 
 namespace utec {
-namespace spatial {
+	namespace spatial {
+		template <typename Point>
+		class BasicSpatial : public SpatialBase<Point> {
+		private:
+			/*
+			 *unordered_map<size_t, Point> points;
+			 *size_t idxPoint;
+			 */
+			vector<Point> points;
 
-/**
- * BasicSpatial implementation
+		public:
+			BasicSpatial() {
+				/*
+				 *this->idxPoint = 0;
+				 */
+			}
+
+			void insert(const Point& new_point) override {
+				/*
+				 *this->points[idxPoint] = new_point;
+				 *idxPoint++;
+				 */
+				this->points.push_back(new_point);
+			}
+
+			Point nearest_neighbor(const Point& reference) override { 
+				Point result = this->points[0];
+				double distance = result.distance(reference);
+
+				for (const auto& point : this->points) {
+					double newDistance = point.distance(reference);
+
+					if (newDistance < distance) {
+						result = point;
+						distance = newDistance;
+					}
+				}
+
+				return result;
+/*
+ *        pair<size_t, double> result = make_pair(0, this->points[0].distance(reference)); 
+ *
+ *        for (auto point : points) {
+ *          auto distance = point.second.distance(reference);
+ *          if (distance < result.second) {
+ *            result = make_pair(point.first, distance); 
+ *          }
+ *        }
+ *
+ *        return this->points[result.first];
  */
-template <typename Point>
-class BasicSpatial : public SpatialBase<Point> {
- private:
+			}
+		};
 
- public:
-  BasicSpatial() {};
-  void insert(const Point& new_point) override {}
-
-  // El punto de referencia no necesariamente es parte del dataset
-  Point nearest_neighbor(const Point& reference) override { return Point({0,0}); }
-};
-
-}  // namespace spatial
-}  // namespace utec
+	}
+}
