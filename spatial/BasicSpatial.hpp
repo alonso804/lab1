@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 #include <iostream>
+#include <limits>
 #include <unordered_map>
 
 using namespace std;
@@ -35,11 +36,11 @@ namespace utec {
 			}
 
 			Point nearest_neighbor(const Point& reference) override { 
-				Point result = this->points[0];
-				double distance = result.distance(reference);
+				Point result = Point({0, 0});
+				double distance = INT_MAX;
 
 				for (const auto& point : this->points) { // O(n * D) => n = cantidad de puntos, D = dimensiones
-					double newDistance = point.distance(reference);
+					double newDistance = reference.distance(point);
 
 					if (newDistance < distance) {
 						result = point;
