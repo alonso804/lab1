@@ -13,8 +13,9 @@ namespace bgi = boost::geometry::index;
 namespace utec {
 namespace spatial {
 
-typedef bg::model::point<int, 2, bg::cs::cartesian> index_point;
+typedef bg::model::point<double, 1, bg::cs::cartesian> index_point;
 typedef index_point value;
+typedef bg::model::box<index_point> box;
 
 /**
  * Validator implementation
@@ -28,6 +29,7 @@ class Validator : public SpatialBase<Point> {
   Validator();
   void insert(const Point& new_point) override;
   Point nearest_neighbor(const Point& reference) override;
+  std::vector<Point> range(const Point& min, const Point& max) override;
 };
 
 }  // namespace spatial

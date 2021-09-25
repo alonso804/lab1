@@ -16,6 +16,9 @@ class Point {
   Point(const std::array<DataType, DIM>& init_array) : _values(init_array) {}
 
   bool operator==(const Point<DataType, DIM>& p) const;
+
+  bool operator<(const Point<DataType, DIM>& p) const;
+
   distance_t distance(const Point<DataType, DIM>& p) const;
 
   DataType get(std::size_t pos) const { return _values.at(pos); }
@@ -31,6 +34,15 @@ inline bool Point<DataType, DIM>::operator==(
     const Point<DataType, DIM>& p) const {
   for (std::size_t I = 0; I < DIM; I++) {
     if (this->_values.at(I) != p._values.at(I)) return false;
+  }
+  return true;
+}
+
+template <typename DataType, std::size_t DIM>
+inline bool Point<DataType, DIM>::operator<(
+    const Point<DataType, DIM>& p) const {
+  for (std::size_t I = 0; I < DIM; I++) {
+    if (this->_values.at(I) >= p._values.at(I)) return false;
   }
   return true;
 }
