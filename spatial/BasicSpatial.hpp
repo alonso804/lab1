@@ -1,17 +1,10 @@
 #pragma once
 
-#include <iostream>
-#include <limits>
-#include <unordered_map>
-#include <utility>
-#include <vector>
-
 #include "SpatialBase.h"
-
-using namespace std;
 
 namespace utec {
 namespace spatial {
+
 /**
  * BasicSpatial implementation
  */
@@ -38,5 +31,6 @@ class BasicSpatial : public SpatialBase<Point> {
     return result;
   }
 };
+
 }  // namespace spatial
 }  // namespace utec

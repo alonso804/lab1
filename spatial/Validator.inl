@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "Validator.h"
-#include <iostream>
 
 namespace utec {
 namespace spatial {
