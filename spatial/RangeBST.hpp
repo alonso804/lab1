@@ -159,6 +159,8 @@ bool RangeBST<Point>::insert(int key, Point data) {
   }
 
   // TODO: complete rotations
+  int height = this->getBalanceHeight(*pointer);
+  cout << height << endl;
 
   return result;
 }
@@ -298,7 +300,7 @@ void RangeBST<Point>::deletion_for_two_branches(Node<Point>**& pointer,
 template <typename Point>
 void RangeBST<Point>::PreOrder(Node<Point>*& temp) {
   if (temp) {
-    cout << temp->key << '\Point' << temp->data << endl;
+    cout << temp->key << '\t' << temp->data << endl;
 
     if (temp->left) {
       PreOrder(temp->left);
@@ -317,7 +319,7 @@ void RangeBST<Point>::InOrder(Node<Point>*& temp) {
       InOrder(temp->left);
     }
 
-    cout << temp->key << '\Point' << temp->data << endl;
+    cout << temp->key << '\t' << temp->data << endl;
 
     if (temp->right) {
       InOrder(temp->right);
@@ -336,7 +338,7 @@ void RangeBST<Point>::PostOrder(Node<Point>*& temp) {
       PostOrder(temp->right);
     }
 
-    cout << temp->key << '\Point' << temp->data << endl;
+    cout << temp->key << '\t' << temp->data << endl;
   }
 }
 

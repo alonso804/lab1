@@ -1,10 +1,6 @@
 #include <gtest/gtest.h>
-#include <time.h>
 
-#include <cstddef>
-#include <iomanip>
 #include <iostream>
-#include <limits>
 
 #include "BasicSpatial.hpp"
 #include "Point.h"
@@ -45,8 +41,6 @@ TYPED_TEST_P(RangeTest, BasicTest) {
     this->instancia.insert(p);
     validator.insert(p);
   }
-  clock_t referenceStart, referenceEnd;
-  clock_t start, end;
 
   auto reference_result = validator.range(query_min, query_max);
   auto result = this->instancia.range(query_min, query_max);
