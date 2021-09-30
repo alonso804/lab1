@@ -38,6 +38,7 @@ TYPED_TEST_P(RangeTest, BasicTest) {
   Validator<point_t> validator;
 
   for (auto& p : points) {
+    cout << p.get(0) << endl;
     this->instancia.insert(p);
     validator.insert(p);
   }
