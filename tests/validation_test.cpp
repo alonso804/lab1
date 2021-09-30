@@ -45,10 +45,16 @@ TYPED_TEST_P(RangeTest, BasicTest) {
   auto reference_result = validator.range(query_min, query_max);
   auto result = this->instancia.range(query_min, query_max);
 
+
   EXPECT_EQ(reference_result.size(), result.size());
 
   std::sort(result.begin(), result.end());
   std::sort(reference_result.begin(), reference_result.end());
+
+  cout << query_min.get(0) << " -> " << query_max.get(0) << endl;
+  cout << reference_result[0].get(0) << "   " << result[0].get(0) << endl;
+  cout << endl;
+
   EXPECT_EQ(reference_result, result);
 }
 

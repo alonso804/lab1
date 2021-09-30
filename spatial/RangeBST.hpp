@@ -1,16 +1,46 @@
 #pragma once
 
-#include "Node.h"
 #include "SpatialBase.h"
 #include <algorithm>
 #include <iostream>
 #include <vector>
 #include <stack>
 #include <vector>
+
 using namespace std;
 
 namespace utec {
   namespace spatial {
+
+  template <typename Point>
+  class RangeBST; 
+
+  template <typename Point>
+  class Node {
+  public:
+      Point data;
+      Node<Point>* left;
+      Node<Point>* right;
+  private:
+      Node(Point data) {
+          this->data = data;
+          this->left = nullptr;
+          this->right = nullptr;
+      }
+      void killSelf() {
+          if(left){
+              left->killSelf();
+          }
+          if(right){
+              right->killSelf();
+          }
+
+          delete this;
+      }
+      template<class>
+      friend class RangeBST; 
+  };
+
     template <typename Point>
     class RangeBST : public SpatialBase<Point> {
       private:
